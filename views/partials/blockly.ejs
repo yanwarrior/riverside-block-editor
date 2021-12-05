@@ -1,6 +1,6 @@
 <div id="blocklyDiv" style="position: absolute"></div>
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
-  <category name="Logic" colour="%{BKY_LOGIC_HUE}">
+  <category css-icon="bi bi-gear" name="Logic" colour="%{BKY_LOGIC_HUE}">
     <block type="controls_if"></block>
     <block type="logic_compare"></block>
     <block type="logic_operation"></block>
@@ -9,7 +9,7 @@
     <block type="logic_null"></block>
     <block type="logic_ternary"></block>
   </category>
-  <category name="Loops" colour="%{BKY_LOOPS_HUE}">
+  <category css-icon="bi bi-arrow-repeat" name="Loops" colour="%{BKY_LOOPS_HUE}">
     <block type="controls_repeat_ext">
       <value name="TIMES">
         <shadow type="math_number">
@@ -39,7 +39,7 @@
     <block type="controls_flow_statements"></block>
     
   </category>
-  <category name="Math" colour="%{BKY_MATH_HUE}">
+  <category css-icon="bi bi-calculator" name="Math" colour="%{BKY_MATH_HUE}">
     <block type="math_number">
       <field name="NUM">123</field>
     </block>
@@ -143,7 +143,7 @@
       <field name="types">int</field>
     </block>
   </category>
-  <category name="Text" colour="%{BKY_TEXTS_HUE}">
+  <category css-icon="bi bi-body-text" name="Text" colour="%{BKY_TEXTS_HUE}">
     <block type="text"></block>
     <block type="text_join"></block>
     <block type="text_append">
@@ -221,7 +221,7 @@
       </value>
     </block>
   </category>
-  <category name="List" colour="%{BKY_LISTS_HUE}">
+  <category css-icon="bi bi-list-check" name="List" colour="%{BKY_LISTS_HUE}">
     <block type="lists_create_with">
       <mutation items="0"></mutation>
     </block>
@@ -272,24 +272,23 @@
     </block>
     <block type="lists_sort"></block>
   </category>
-  <sep></sep>
-  <category name="Variables" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
-  <category name="Functions" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
-  <sep></sep>
-  <category name="Dictionary" colour="330">
+  <category css-icon="bi bi-cup" name="Variables" colour="%{BKY_VARIABLES_HUE}" custom="VARIABLE"></category>
+  <category css-icon="bi bi-collection" name="Functions" colour="%{BKY_PROCEDURES_HUE}" custom="PROCEDURE"></category>
+
+  <category css-icon="bi bi-diagram-3" name="Dictionary" colour="330">
     <block type="key_value"></block>
     <block type="dict"></block>
     <block type="get_value_dict">
       <field name="NAME" id=";qh,!l{OI)[EzHx}XUMX">item</field>
     </block>
   </category>
-  <category name="Times" colour="330">
+  <category css-icon="bi bi-clock" name="Times" colour="330">
     <block type="open_time"></block>
     <block type="time_sleep">
       <field name="second">1</field>
     </block>
   </category>
-  <category name="Requests" colour="20">
+  <category css-icon="bi bi-globe" name="Requests" colour="20">
     <block type="import_requests"></block>
     <block type="request_post"></block>
     <block type="get_response_text">
@@ -299,9 +298,7 @@
       <field name="NAME" id="]r*T!a=x6yGkC_B/cbCF">item</field>
     </block>
   </category>
-  <sep></sep>
-  <label text="Hybride Machine"></label>
-  <category name="Machine Communication" colour="290">
+  <category css-icon="bi bi-cpu" name="Machine Communication" colour="290">
     <block type="open_machine"></block>
     <block type="machine_communication"></block>
     <block type="talk_with_machine"></block>
@@ -310,7 +307,7 @@
       <field name="var" id="G.VqTT-;^_@PA;QU(=y;">machine</field>
     </block>
   </category>
-  <category name="Machine Actions" colour="160">
+  <category css-icon="bi bi-lightning" name="Machine Actions" colour="160">
     <block type="led_on"></block>
     <block type="led_off"></block>
     <block type="led_blink"></block>

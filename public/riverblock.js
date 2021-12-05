@@ -50,46 +50,50 @@ Blockly.Themes.Darker = Blockly.Theme.defineTheme('darker', {
   }
 });
 
-CustomConstantsProvider = function() {
-  // Set up all of the constants from the base provider.
-  CustomConstantsProvider.superClass_.constructor.call(this);
 
-  // Override a few properties.
+
+class CustomCategory extends Blockly.ToolboxCategory {
   /**
-   * The width of the notch used for previous and next connections.
-   * @type {number}
+   * Constructor for a custom category.
    * @override
    */
-  this.NOTCH_WIDTH = 20;
+  constructor(categoryDef, toolbox, opt_parent) {
+    super(categoryDef, toolbox, opt_parent);
+  }
 
-  /**
-   * The height of the notch used for previous and next connections.
-   * @type {number}
-   * @override
-   */
-  this.NOTCH_HEIGHT = 10;
+  addColourBorder_(colour){
+    this.rowDiv_.style.backgroundColor = colour;
+  }
 
-  /**
-   * Rounded corner radius.
-   * @type {number}
-   * @override
-   */
-  this.CORNER_RADIUS = 2;
-  /**
-   * The height of the puzzle tab used for input and output connections.
-   * @type {number}
-   * @override
-   */
-  this.TAB_HEIGHT = 8;
-};
+  setSelected(isSelected){
+    // We do not store the label span on the category, so use getElementsByClassName.
+    var labelDom = this.rowDiv_.getElementsByClassName('blocklyTreeLabel')[0];
+    if (isSelected) {
+      // Change the background color of the div to white.
+      this.rowDiv_.style.backgroundColor = 'white';
+      // Set the colour of the text to the colour of the category.
+      labelDom.style.color = this.colour_;
+      this.iconDom_.style.color = this.colour_;
+    } else {
+      // Set the background back to the original colour.
+      this.rowDiv_.style.backgroundColor = this.colour_;
+      // Set the text back to white.
+      labelDom.style.color = 'white';
+      this.iconDom_.style.color = 'white';
+    }
+    // This is used for accessibility purposes.
+    Blockly.utils.aria.setState(/** @type {!Element} */ (this.htmlDiv_),
+        Blockly.utils.aria.State.SELECTED, isSelected);
+ }
+}
+
+Blockly.registry.register(
+  Blockly.registry.Type.TOOLBOX_ITEM,
+  Blockly.ToolboxCategory.registrationName,
+  CustomCategory, true
+);
 
 
-CustomRenderer = function(name) {
-  CustomRenderer.superClass_.constructor.call(this, name);
-};
-Blockly.utils.object.inherits(CustomRenderer, Blockly.blockRendering.Renderer);
-
-Blockly.blockRendering.register('custom_renderer', CustomRenderer);
 
 var blocklyWorkspace = Blockly.inject(
   'blocklyDiv', {
@@ -97,16 +101,15 @@ var blocklyWorkspace = Blockly.inject(
     toolbox: document.getElementById("toolbox"),
     scroll: true,
     theme: Blockly.Themes.Darker,
-    renderer: 'custom_renderer',
     grid:
-         {spacing: 15,
-          length: 4,
+         {spacing: 10,
+          length: 1,
           colour: '#293B5F',
           snap: true},
           zoom:
           {controls: true,
            wheel: true,
-           startScale: 1.0,
+           startScale: 1,
            maxScale: 3,
            minScale: 0.3,
            scaleSpeed: 1.2,
@@ -116,6 +119,9 @@ var blocklyWorkspace = Blockly.inject(
 );
 Blockly.Python.init(blocklyWorkspace);
 
+var toolbox = Blockly.getMainWorkspace().getToolbox();
+toolbox.getToolboxItems()[0];
+console.log(toolbox);
 
 var onresize = function(e) {
   // Compute the absolute coordinates and dimensions of blocklyArea.

@@ -172,3 +172,31 @@ table {
 .blocklyTreeSeparator {
 	border: none;
 }
+
+.blocklyTreeLabel {
+  color: white;
+}
+/* Adds padding around the group of categories and separators. */
+.blocklyToolboxContents {
+  padding: 4px;
+}
+/* Adds space between the categories, rounds the corners and adds space around the label. */
+.blocklyTreeRow {
+	height: initial;
+  padding: 4px;
+  margin-bottom: .5em;
+  border-radius: 4px;
+}
+
+.blocklyTreeRowContentContainer {
+  display: flex;
+  flex-direction: row;
+	padding-left: 15px;
+	width: fit-content;
+	margin: 3px;
+  align-items: center;
+}
+
+.customIcon {
+  color: white;
+}
