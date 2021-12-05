@@ -106,10 +106,15 @@
 <div class="modal fade" id="modal_open_project" tabindex="-1" aria-labelledby="modal_open_project" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-body  d-flex aligns-items-center justify-content-center">
-        <div class="drag-file bg-secondary" id="div_drop_zone">
-          <div class="icon"><i class="bi bi-download"></i></div>
-          <h6>Drag & Drop Project</h6>
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal_pairing_label">
+          <i class="bi bi-cloud-upload"></i> Open Project
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <input class="form-control" type="file" id="input_open_project">
         </div>
       </div>
     </div>

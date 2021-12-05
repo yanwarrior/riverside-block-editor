@@ -24,7 +24,9 @@ var inputProjectName = document.getElementById("input_project_name");
 var btnSaveProject = document.getElementById("btn_save_project");
 var linkOpenProject = document.getElementById("link_open_project");
 var modalOpenProject = new bootstrap.Modal(document.getElementById("modal_open_project"));
-var divDropZone = document.getElementById("div_drop_zone");
+var inputOpenProject = document.getElementById('input_open_project');
+var linkFilename = document.getElementById("link_filename");
+
 var serialIsOpen = false;
 
 Blockly.Themes.Darker = Blockly.Theme.defineTheme('darker', {
@@ -202,8 +204,8 @@ linkSerialCom.addEventListener('click', async () => {
             reader.releaseLock();
             break;
           }
-          if (value && done) {
-            textareaSerial.value = value;
+          if (value) {
+            textareaSerial.value += value;
           }
         }
 
@@ -285,6 +287,8 @@ btnSaveProject.addEventListener("click", function () {
   document.body.appendChild(aElem);
   aElem.click();
   document.body.removeChild(aElem);
+  linkFilename.innerHTML = inputProjectName.value;
+  localStorage.setItem(inputProjectName.value, xml_text);
   inputProjectName.value = "";
   modalSaveProject.hide();
 });
@@ -293,31 +297,39 @@ linkOpenProject.addEventListener("click", function () {
   modalOpenProject.show();
 });
 
-divDropZone.addEventListener('dragover', function(e) {
-  e.stopPropagation();
-  e.preventDefault();
-  e.dataTransfer.dropEffect = 'copy';
-});
 
-divDropZone.addEventListener('drop', function(e) {
-  e.stopPropagation();
-  e.preventDefault();
-  var files = e.dataTransfer.files; // Array of all files
+inputOpenProject.addEventListener('change', function (evt) {
+  let files = evt.target.files; // FileList object
 
-  for (var i=0, file; file=files[i]; i++) {
-    var reader = new FileReader();
-    reader.onload = function(e2) {
-        // finished reading file data.
-        let xml_text = e2.target.result;
-        var xml = Blockly.Xml.textToDom(xml_text);
-        Blockly.Xml.domToWorkspace(xml, blocklyWorkspace);
-        localStorage.setItem("project", xml_text);
-        
-        modalOpenProject.hide();
+  // use the 1st file from the list
+  let f = files[0];
+  var fullPath = evt.target.value;
+  var filename = "";
+  if (fullPath) {
+    var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+    var filename = fullPath.substring(startIndex);
+    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+        filename = filename.substring(1);
     }
-    reader.readAsText(file); 
+    linkFilename.innerHTML = filename;
   }
-});
+
+  let reader = new FileReader();
+
+  reader.onload = (function(theFile) {
+    return function(e) {
+      Blockly.mainWorkspace.clear();
+      localStorage.setItem("project", e.target.result);
+      localStorage.setItem(filename, e.target.result);
+      var xml = Blockly.Xml.textToDom(e.target.result);
+      Blockly.Xml.domToWorkspace(blocklyWorkspace, xml);
+      modalOpenProject.hide();
+    };
+  })(f);
+
+  // Read in the image file as a data URL.
+  reader.readAsText(f);
+}, false);
 
 
 
