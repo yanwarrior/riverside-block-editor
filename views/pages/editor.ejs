@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../partials/head'); %>
+</head>
+<body>
+  <%- include('../partials/navbar'); %>
+  <table>
+    <tr>
+      <td id="blocklyArea">
+      </td>
+    </tr>
+  </table>
+  
+  <%- include('../partials/modal'); %>
+  <%- include('../partials/offcanvas'); %>
+  <%- include('../partials/blockly'); %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <script>var socket = io();</script>
+  <script src="customblock.js"></script>
+  <script src="riverblock.js"></script>
+</body>
+</html>
