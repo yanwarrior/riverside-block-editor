@@ -11,6 +11,16 @@ const riverSocket = require("./riversocket");
 
 const PORT = process.env.PORT || 3001;
 
+/**
+ * SSL Redirect
+ */
+ app.get('*',function(req,res,next){
+  if(req.headers['x-forwarded-proto']!='https')
+    res.redirect('https://riverlabs.heroku.com'+ req.url)
+  else
+    next() /* Continue to other routes if we're not redirecting */
+});
+
 
 app.set(path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
