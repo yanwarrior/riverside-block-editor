@@ -9,6 +9,9 @@ const { Server, Socket } = require("socket.io");
 const io = new Server(server);
 const riverSocket = require("./riversocket");
 
+const PORT = process.env.PORT || 3001;
+
+
 app.set(path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
@@ -80,6 +83,6 @@ io.on('connection', (socket) => {
 
 
 
-server.listen(3001, () => {
+server.listen(PORT, () => {
   console.log('listening on *:3001');
 });
