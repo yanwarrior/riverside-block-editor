@@ -3,9 +3,7 @@ var modalPairing = new bootstrap.Modal(document.getElementById('modal_pairing'))
 var btnPairNow = document.getElementById("btn_pair_now");
 var inputRoomName = document.getElementById("input_room_name");
 var btnRun = document.getElementById("btn_run");
-var offcanvasConsole = new bootstrap.Offcanvas(document.getElementById("offcanvas_console"));
 var linkConsole = document.getElementById("link_console");
-var textareaConsole = document.getElementById("textarea_console");
 var linkSaveProject = document.getElementById("link_save_project");
 var modalSaveProject = new bootstrap.Modal(document.getElementById("modal_save_project"));
 var inputProjectName = document.getElementById("input_project_name");
@@ -17,16 +15,24 @@ var linkFilename = document.getElementById("link_filename");
 var linkNewProject = document.getElementById('link_new_project');
 var modalWelcome = new bootstrap.Modal(document.getElementById('modal_welcome'));
 var textareaPython = document.getElementById("textarea_python");
+var textareaConsole = document.getElementById("textarea_console");
+var thingspeakBaseURL = "https://api.thingspeak.com";
+var iftttBaseURL = "https://maker.ifttt.com";
 
 var global_statements_import = [
   "try:",
   "  import os",
   "  import time",
   "  import sys",
+  "  import smtplib",
   "  import requests",
   "except Exception as e:",
   "  print('system checking...', flush=True)",
+  "  print('updgare python system...', flush=True)",
   "  os.system('pip install requests')",
+  "  print('Don\\'t worry about this problem, you can run again after this message!'.upper(), flush=True)",
+  "  sys.exit()",
+  "time.sleep(2)",
   "\n\n"
 ];
 

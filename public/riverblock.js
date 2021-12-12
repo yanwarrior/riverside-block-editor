@@ -344,11 +344,6 @@ socket.on("stdout", function (data) {
 });
 
 
-linkConsole.addEventListener("click", function () {
-  offcanvasConsole.show();
-});
-
-
 linkSaveProject.addEventListener("click", function () {
   inputProjectName.value = "";
   modalSaveProject.show();
