@@ -8,22 +8,7 @@ var modalSuccess = document.getElementById("modalSuccess");
 var modalWarning = document.getElementById("modalWarning");
 var modalError = document.getElementById("modalError");
 
-var linkPairing = document.getElementById("link_pairing");
-var modalPairing = new bootstrap.Modal(document.getElementById('modal_pairing'));
-var btnPairNow = document.getElementById("btn_pair_now");
-var inputRoomName = document.getElementById("input_room_name");
-var btnRun = document.getElementById("btn_run");
-var offcanvasConsole = new bootstrap.Offcanvas(document.getElementById("offcanvas_console"));
-var linkConsole = document.getElementById("link_console");
-var textareaConsole = document.getElementById("textarea_console");
-var linkSaveProject = document.getElementById("link_save_project");
-var modalSaveProject = new bootstrap.Modal(document.getElementById("modal_save_project"));
-var inputProjectName = document.getElementById("input_project_name");
-var btnSaveProject = document.getElementById("btn_save_project");
-var linkOpenProject = document.getElementById("link_open_project");
-var modalOpenProject = new bootstrap.Modal(document.getElementById("modal_open_project"));
-var inputOpenProject = document.getElementById('input_open_project');
-var linkFilename = document.getElementById("link_filename");
+
 
 var serialIsOpen = false;
 
@@ -288,19 +273,16 @@ onresize();
 
 Blockly.svgResize(blocklyWorkspace);
 
-function onFirstComment(event) {
-  
-  if (event.type == Blockly.Events.BLOCK_CHANGE &&
-      event.element == 'comment' &&
-      !event.oldValue && event.newValue) {
-    alert('Congratulations on creating your first comment!')
-    workspace.removeChangeListener(onFirstComment);
-  }
-}
-blocklyWorkspace.addChangeListener(onFirstComment);
 
+// Real live Python code
+blocklyWorkspace.addChangeListener(function (event) {
+  var code = global_statements_import.join("\n") + "\n";
 
-
+  code += Blockly.Python.workspaceToCode(blocklyWorkspace);
+  code += "\n" + global_statements_end.join("\n");
+  textareaPython.value = "";
+  textareaPython.value = code;
+});
 
 window.onload = function () {
   var xml_text = localStorage.getItem("project");
@@ -319,6 +301,119 @@ window.addEventListener('beforeunload', function (e) {
     localStorage.setItem("project", xml_text);
   }
 });
+
+
+// Link Pairing
+linkPairing.addEventListener("click", function () {
+  modalPairing.show();
+});
+
+// Pair now
+btnPairNow.addEventListener("click", function () {
+  console.log(inputRoomName.value);
+  localStorage.setItem('room', inputRoomName.value);
+  socket.emit("pair", {room: inputRoomName.value, content: ''});
+  modalPairing.hide(); 
+});
+
+// Run 
+btnRun.addEventListener("click", function () {
+
+  var code = global_statements_import.join("\n") + "\n";
+
+  code += Blockly.Python.workspaceToCode(blocklyWorkspace);
+  var xml = Blockly.Xml.workspaceToDom(blocklyWorkspace);
+  var xml_text = Blockly.Xml.domToText(xml);
+
+  code += "\n" + global_statements_end.join("\n");
+
+  // document.getElementById('textareaModalLog').value = "";
+  // new bootstrap.Modal(document.getElementById('modalLog')).show();
+  console.log(code);
+  socket.emit('run', {
+    content: code,
+    room: localStorage.getItem('room')
+  });
+});
+
+socket.on("stdout", function (data) {
+  console.log(data.content);
+  textareaConsole.value += data.content;
+  offcanvasConsole.show();
+  textareaConsole.scrollTop = textareaConsole.scrollHeight;
+});
+
+
+linkConsole.addEventListener("click", function () {
+  offcanvasConsole.show();
+});
+
+
+linkSaveProject.addEventListener("click", function () {
+  inputProjectName.value = "";
+  modalSaveProject.show();
+});
+
+
+btnSaveProject.addEventListener("click", function () {
+  var xml = Blockly.Xml.workspaceToDom(blocklyWorkspace);
+  var xml_text = Blockly.Xml.domToText(xml);
+  var aElem = document.createElement('a');
+  aElem.setAttribute('href','data:application/xhtml+xml;charset=utf-8, ' + encodeURIComponent(xml_text));
+  aElem.setAttribute('download', `${inputProjectName.value}.xml`);
+  document.body.appendChild(aElem);
+  aElem.click();
+  document.body.removeChild(aElem);
+  linkFilename.innerHTML = inputProjectName.value;
+  localStorage.setItem(inputProjectName.value, xml_text);
+  inputProjectName.value = "";
+  modalSaveProject.hide();
+});
+
+linkOpenProject.addEventListener("click", function () {
+  modalOpenProject.show();
+});
+
+
+linkNewProject.addEventListener('click', function () {
+  Blockly.mainWorkspace.clear();
+});
+
+inputOpenProject.addEventListener('change', function (evt) {
+  let files = evt.target.files; // FileList object
+
+  // use the 1st file from the list
+  let f = files[0];
+  var fullPath = evt.target.value;
+  var filename = "";
+  if (fullPath) {
+    var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
+    var filename = fullPath.substring(startIndex);
+    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
+        filename = filename.substring(1);
+    }
+    linkFilename.innerHTML = filename;
+  }
+
+  let reader = new FileReader();
+
+  reader.onload = (function(theFile) {
+    return function(e) {
+      Blockly.mainWorkspace.clear();
+      localStorage.setItem("project", e.target.result);
+      localStorage.setItem(filename, e.target.result);
+      var xml = Blockly.Xml.textToDom(e.target.result);
+      Blockly.Xml.domToWorkspace(blocklyWorkspace, xml);
+      modalOpenProject.hide();
+    };
+  })(f);
+
+  // Read in the image file as a data URL.
+  reader.readAsText(f);
+}, false);
+
+
+
 
 
 // socket.on("log", function (data) {
@@ -374,113 +469,5 @@ window.addEventListener('beforeunload', function (e) {
 //     // Todo
 //   } 
 // });
-
-// Link Pairing
-linkPairing.addEventListener("click", function () {
-  modalPairing.show();
-});
-
-// Pair now
-btnPairNow.addEventListener("click", function () {
-  console.log(inputRoomName.value);
-  localStorage.setItem('room', inputRoomName.value);
-  socket.emit("pair", {room: inputRoomName.value, content: ''});
-  modalPairing.hide(); 
-});
-
-// Run 
-btnRun.addEventListener("click", function () {
-
-  var code = "import sys\n";
-
-  code += Blockly.Python.workspaceToCode(blocklyWorkspace);
-  code += "\n\nimport time\ntime.sleep(10)";
-  var xml = Blockly.Xml.workspaceToDom(blocklyWorkspace);
-  var xml_text = Blockly.Xml.domToText(xml);
-
-  // document.getElementById('textareaModalLog').value = "";
-  // new bootstrap.Modal(document.getElementById('modalLog')).show();
-
-  socket.emit('run', {
-    content: code,
-    room: localStorage.getItem('room')
-  });
-});
-
-socket.on("stdout", function (data) {
-  console.log(data.content);
-  textareaConsole.value += data.content;
-  offcanvasConsole.show();
-  textareaConsole.scrollTop = textareaConsole.scrollHeight;
-});
-
-
-linkConsole.addEventListener("click", function () {
-  offcanvasConsole.show();
-});
-
-
-linkSaveProject.addEventListener("click", function () {
-  inputProjectName.value = "";
-  modalSaveProject.show();
-});
-
-
-btnSaveProject.addEventListener("click", function () {
-  var xml = Blockly.Xml.workspaceToDom(blocklyWorkspace);
-  var xml_text = Blockly.Xml.domToText(xml);
-  var aElem = document.createElement('a');
-  aElem.setAttribute('href','data:application/xhtml+xml;charset=utf-8, ' + encodeURIComponent(xml_text));
-  aElem.setAttribute('download', `${inputProjectName.value}.xml`);
-  document.body.appendChild(aElem);
-  aElem.click();
-  document.body.removeChild(aElem);
-  linkFilename.innerHTML = inputProjectName.value;
-  localStorage.setItem(inputProjectName.value, xml_text);
-  inputProjectName.value = "";
-  modalSaveProject.hide();
-});
-
-linkOpenProject.addEventListener("click", function () {
-  modalOpenProject.show();
-});
-
-
-inputOpenProject.addEventListener('change', function (evt) {
-  let files = evt.target.files; // FileList object
-
-  // use the 1st file from the list
-  let f = files[0];
-  var fullPath = evt.target.value;
-  var filename = "";
-  if (fullPath) {
-    var startIndex = (fullPath.indexOf('\\') >= 0 ? fullPath.lastIndexOf('\\') : fullPath.lastIndexOf('/'));
-    var filename = fullPath.substring(startIndex);
-    if (filename.indexOf('\\') === 0 || filename.indexOf('/') === 0) {
-        filename = filename.substring(1);
-    }
-    linkFilename.innerHTML = filename;
-  }
-
-  let reader = new FileReader();
-
-  reader.onload = (function(theFile) {
-    return function(e) {
-      Blockly.mainWorkspace.clear();
-      localStorage.setItem("project", e.target.result);
-      localStorage.setItem(filename, e.target.result);
-      var xml = Blockly.Xml.textToDom(e.target.result);
-      Blockly.Xml.domToWorkspace(blocklyWorkspace, xml);
-      modalOpenProject.hide();
-    };
-  })(f);
-
-  // Read in the image file as a data URL.
-  reader.readAsText(f);
-}, false);
-
-
-
-
 
 

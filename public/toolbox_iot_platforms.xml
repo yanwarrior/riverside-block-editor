@@ -1,0 +1,55 @@
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+  <category name="IoT" colour="230">
+    <block type="iot">
+      <field name="machine" id="FS2;^FBj]Ucr.1R/[a[p">machine</field>
+      <field name="machine ip">machine ip</field>
+    </block>
+    <block type="iot_led">
+      <field name="state">on</field>
+      <field name="machine" id="FS2;^FBj]Ucr.1R/[a[p">machine</field>
+    </block>
+    <block type="iot_tone">
+      <field name="tone" id="ByEN:?}]qHQpqvZ*0_fS">tone</field>
+      <field name="note">do</field>
+      <field name="machine" id="FS2;^FBj]Ucr.1R/[a[p">machine</field>
+    </block>
+    <block type="iot_temperature">
+      <field name="temperature" id="j/U!ZYck,Z^ri1%j-6h9">temperature</field>
+      <field name="machine" id="FS2;^FBj]Ucr.1R/[a[p">machine</field>
+    </block>
+    <block type="iot_celsius">
+      <field name="celsius" id="vWT9yGB0SiBjBdpW8~EG">celsius</field>
+      <field name="temperature" id="j/U!ZYck,Z^ri1%j-6h9">temperature</field>
+    </block>
+    <block type="iot_fahrenheit">
+      <field name="fahrenheit" id="|f?jYs65luO]tAsYFxwa">fahrenheit</field>
+      <field name="temperature" id="j/U!ZYck,Z^ri1%j-6h9">temperature</field>
+    </block>
+  </category>
+  <category name="Platforms" colour="210">
+    <block type="thingspeak">
+      <field name="thingspeak" id="EfIE8Rjm,;=~d$f84}Vo">thingspeak</field>
+      <field name="key">key</field>
+    </block>
+    <block type="thingspeak_update">
+      <field name="thingspeak" id="EfIE8Rjm,;=~d$f84}Vo">thingspeak</field>
+      <field name="seconds">3</field>
+    </block>
+    <block type="mailtrap">
+      <field name="mailtrap" id="*c8}lC7m3(cxRt1zHf:2">mailtrap</field>
+      <field name="smtp">smtp.mailtrap.io</field>
+      <field name="port">2525</field>
+      <field name="username">username</field>
+      <field name="password">password</field>
+    </block>
+    <block type="mailtrap_sent"></block>
+    <block type="ifttt">
+      <field name="ifttt" id="KX)]scQBP^${|2*l?OWx">ifttt</field>
+      <field name="key">key</field>
+      <field name="event">event</field>
+    </block>
+    <block type="ifttt_send">
+      <field name="ifttt" id="KX)]scQBP^${|2*l?OWx">ifttt</field>
+    </block>
+  </category>
+</xml>

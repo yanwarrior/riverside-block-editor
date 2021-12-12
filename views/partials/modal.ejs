@@ -56,19 +56,23 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="modal_pairing_label">
-          <i class="bi bi-broadcast"></i> Pairing
+          <i class="bi bi-link-45deg"></i> Pairing
         </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
+        <div class="alert alert-primary mb-4"  role="alert">
+          Before your pairing to PC, 
+          please open <strong>River Bridge App</strong> 
+          to connect with RiverSide!
+        </div>
         <div class="form-group">
-          <label class="mb-2">Room Name</label>
-          <input type="text" placeholder="Room name..." class="form-control" id="input_room_name" />
+          <label class="mb-2">PC Name</label>
+          <input type="text" placeholder="Computer name..." class="form-control" id="input_room_name" />
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-sm btn-primary" id="btn_pair_now">
+        <button type="button" class="btn btn-primary" id="btn_pair_now">
           Pair
         </button>
       </div>
@@ -115,6 +119,29 @@
       <div class="modal-body">
         <div class="mb-3">
           <input class="form-control" type="file" id="input_open_project">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="modal_welcome" tabindex="-1" aria-labelledby="modal_welcome" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="card modal-body bg-dark text-light">
+        <img src="https://image.freepik.com/free-vector/industry-4-0-word-concepts-banner-connection-addressing-via-iot-infographics-with-linear-icons-blue-background-isolated-typography-four-revolution-outline-rgb-color-illustration_106317-2625.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Welcome to RiverSide</h5>
+          <p class="card-text">
+            Project ini dibangun untuk kebutuhan pendidikan anak-anak 
+            untuk membantu mereka untuk mengenal dan belajar teknologi 
+            masa kini (khususnya IoT - Internet of Thing) pada era Industri 4.0 dengan
+            berbagai kemudahan dan kesenangan.
+          </p>
+          <a href="#" class="btn btn-primary">
+            Build with Love, RiverSide by @_riverlabs
+          </a>
         </div>
       </div>
     </div>
