@@ -16,8 +16,10 @@ var linkNewProject = document.getElementById('link_new_project');
 var modalWelcome = new bootstrap.Modal(document.getElementById('modal_welcome'));
 var textareaPython = document.getElementById("textarea_python");
 var textareaConsole = document.getElementById("textarea_console");
+var linkRoomName = document.getElementById("link_room_name");
 var thingspeakBaseURL = "https://api.thingspeak.com";
 var iftttBaseURL = "https://maker.ifttt.com";
+var roomName = "";
 
 var global_statements_import = [
   "try:",

@@ -312,6 +312,8 @@ linkPairing.addEventListener("click", function () {
 btnPairNow.addEventListener("click", function () {
   console.log(inputRoomName.value);
   localStorage.setItem('room', inputRoomName.value);
+  roomName = inputRoomName.value;
+  linkRoomName.innerHTML = roomName;
   socket.emit("pair", {room: inputRoomName.value, content: ''});
   modalPairing.hide(); 
 });
@@ -337,8 +339,7 @@ btnRun.addEventListener("click", function () {
 });
 
 socket.on("stdout", function (data) {
-  console.log(data.content);
-  textareaConsole.value += data.content;
+  textareaConsole.value += `[${data?data.room:'NOROOM'}] ${data.content}`;
   offcanvasConsole.show();
   textareaConsole.scrollTop = textareaConsole.scrollHeight;
 });

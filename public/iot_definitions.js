@@ -47,6 +47,23 @@ Blockly.Blocks['iot_tone'] = {
   }
 };
 
+Blockly.Blocks['iot_beep'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("https://avatars.githubusercontent.com/u/9865736?s=280&v=4", 30, 35, { alt: "*", flipRtl: "FALSE" }))
+        .appendField("sound")
+        .appendField(new Blockly.FieldDropdown([["on","on"], ["off","off"]]), "state")
+        .appendField(new Blockly.FieldVariable("beep"), "beep")
+        .appendField("from")
+        .appendField(new Blockly.FieldVariable("machine"), "machine");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
 Blockly.Blocks['iot_temperature'] = {
   init: function() {
     this.appendDummyInput()
