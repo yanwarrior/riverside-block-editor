@@ -287,10 +287,15 @@ blocklyWorkspace.addChangeListener(function (event) {
 window.onload = function () {
   try {
     var xml_text = localStorage.getItem("project");
+    var room = localStorage.getItem("room");
     if (xml_text) {
       var xml = Blockly.Xml.textToDom(xml_text);
       Blockly.Xml.domToWorkspace(xml, blocklyWorkspace);
     } 
+
+    if (room) {
+      socket.emit("pair", {room, content: ''});
+    }
   } catch(err)  {
     localStorage.setItem("project", "");
   }
