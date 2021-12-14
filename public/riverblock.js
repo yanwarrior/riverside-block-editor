@@ -285,11 +285,16 @@ blocklyWorkspace.addChangeListener(function (event) {
 });
 
 window.onload = function () {
-  var xml_text = localStorage.getItem("project");
-  if (xml_text) {
-    var xml = Blockly.Xml.textToDom(xml_text);
-    Blockly.Xml.domToWorkspace(xml, blocklyWorkspace);
+  try {
+    var xml_text = localStorage.getItem("project");
+    if (xml_text) {
+      var xml = Blockly.Xml.textToDom(xml_text);
+      Blockly.Xml.domToWorkspace(xml, blocklyWorkspace);
+    } 
+  } catch(err)  {
+    localStorage.setItem("project", "");
   }
+  
 };
 
 
