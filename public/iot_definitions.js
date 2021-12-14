@@ -1,113 +1,103 @@
-Blockly.Blocks['iot'] = {
+Blockly.Blocks['iot_machine'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("https://avatars.githubusercontent.com/u/9865736?s=280&v=4", 30, 35, { alt: "*", flipRtl: "FALSE" }))
-        .appendField("talk with")
-        .appendField(new Blockly.FieldVariable("machine"), "machine")
-        .appendField("using")
-        .appendField(new Blockly.FieldTextInput("machine ip"), "machine ip");
+        .appendField(new Blockly.FieldImage("https://icons.iconarchive.com/icons/artua/wall-e/128/eve-icon.png", 49, 49, { alt: "*", flipRtl: "FALSE" }))
+        .appendField("machine start with")
+        .appendField(new Blockly.FieldTextInput("ip"), "ip");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setColour(240);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+  getDeveloperVars: function() {
+    return ['iot_led', 'iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature'];
   }
 };
 
 Blockly.Blocks['iot_led'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("https://avatars.githubusercontent.com/u/9865736?s=280&v=4", 30, 35, { alt: "*", flipRtl: "FALSE" }))
-        .appendField("turn")
-        .appendField(new Blockly.FieldDropdown([["on","on"], ["off","off"]]), "state")
-        .appendField("led from")
-        .appendField(new Blockly.FieldVariable("machine"), "machine");
+        .appendField(new Blockly.FieldImage("https://icons.iconarchive.com/icons/artua/wall-e/128/eve-icon.png", 40, 40, { alt: "*", flipRtl: "FALSE" }))
+        .appendField("lamp")
+        .appendField(new Blockly.FieldDropdown([[{"src":"https://icons.iconarchive.com/icons/graphicloads/100-flat-2/128/switch-icon.png","width":20,"height":20,"alt":"On"},"on"], [{"src":"https://icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/128/Switch-icon.png","width":20,"height":20,"alt":"Off"},"off"]]), "state");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['iot_tone'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("https://avatars.githubusercontent.com/u/9865736?s=280&v=4", 30, 35, { alt: "*", flipRtl: "FALSE" }))
-        .appendField("play")
-        .appendField(new Blockly.FieldVariable("tone"), "tone")
-        .appendField(new Blockly.FieldDropdown([["do","1"], ["re","2"], ["mi","3"], ["fa","4"], ["sol","5"], ["la","6"], ["si","7"], ["doo","8"]]), "note")
-        .appendField("from")
-        .appendField(new Blockly.FieldVariable("machine"), "machine");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setColour(240);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+  getDeveloperVars: function() {
+    return ['iot_led', 'iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature'];
   }
 };
 
 Blockly.Blocks['iot_beep'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("https://avatars.githubusercontent.com/u/9865736?s=280&v=4", 30, 35, { alt: "*", flipRtl: "FALSE" }))
-        .appendField("sound")
-        .appendField(new Blockly.FieldDropdown([["on","on"], ["off","off"]]), "state")
-        .appendField(new Blockly.FieldVariable("beep"), "beep")
-        .appendField("from")
-        .appendField(new Blockly.FieldVariable("machine"), "machine");
+        .appendField(new Blockly.FieldImage("https://icons.iconarchive.com/icons/artua/wall-e/128/eve-icon.png", 40, 40, { alt: "*", flipRtl: "FALSE" }))
+        .appendField("beep")
+        .appendField(new Blockly.FieldDropdown([[{"src":"https://icons.iconarchive.com/icons/graphicloads/100-flat-2/128/switch-icon.png","width":20,"height":20,"alt":"On"},"on"], [{"src":"https://icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/128/Switch-icon.png","width":20,"height":20,"alt":"Off"},"off"]]), "state");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
+    this.setColour(240);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+  getDeveloperVars: function() {
+    return ['iot_led', 'iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature'];
+  }
+};
+
+Blockly.Blocks['iot_tone'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("https://icons.iconarchive.com/icons/artua/wall-e/128/eve-icon.png", 40, 40, { alt: "*", flipRtl: "FALSE" }))
+        .appendField("play melody")
+        .appendField(new Blockly.FieldDropdown([
+          [{"src":"https://icons.iconarchive.com/icons/iconarchive/red-orb-alphabet/128/Number-1-icon.png","width":20,"height":20,"alt":"Do"},"1"], 
+          [{"src":"https://icons.iconarchive.com/icons/iconarchive/red-orb-alphabet/128/Number-2-icon.png","width":20,"height":20,"alt":"Re"},"2"], 
+          [{"src":"https://icons.iconarchive.com/icons/iconarchive/red-orb-alphabet/128/Number-3-icon.png","width":20,"height":20,"alt":"Mi"},"3"], 
+          [{"src":"https://icons.iconarchive.com/icons/iconarchive/red-orb-alphabet/128/Number-4-icon.png","width":20,"height":20,"alt":"Fa"},"4"], 
+          [{"src":"https://icons.iconarchive.com/icons/iconarchive/red-orb-alphabet/128/Number-5-icon.png","width":20,"height":20,"alt":"Sol"},"5"], 
+          [{"src":"https://icons.iconarchive.com/icons/iconarchive/red-orb-alphabet/128/Number-6-icon.png","width":20,"height":20,"alt":"La"},"6"], 
+          [{"src":"https://icons.iconarchive.com/icons/iconarchive/red-orb-alphabet/128/Number-7-icon.png","width":20,"height":20,"alt":"Si"},"7"], 
+          [{"src":"https://icons.iconarchive.com/icons/iconarchive/red-orb-alphabet/128/Number-8-icon.png","width":20,"height":20,"alt":"Doo"},"8"]]), "state")
+        .appendField("with duration")
+        .appendField(new Blockly.FieldNumber(200, 100, 1000), "duration")
+        .appendField("milliseconds ");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(240);
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+  getDeveloperVars: function() {
+    return ['iot_led', 'iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature'];
   }
 };
 
 Blockly.Blocks['iot_temperature'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("https://avatars.githubusercontent.com/u/9865736?s=280&v=4", 30, 35, { alt: "*", flipRtl: "FALSE" }))
-        .appendField("info")
-        .appendField(new Blockly.FieldVariable("temperature"), "temperature")
-        .appendField("from")
-        .appendField(new Blockly.FieldVariable("machine"), "machine");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
-
-Blockly.Blocks['iot_celsius'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("https://avatars.githubusercontent.com/u/9865736?s=280&v=4", 30, 35, { alt: "*", flipRtl: "FALSE" }))
-        .appendField("get")
+        .appendField(new Blockly.FieldImage("https://icons.iconarchive.com/icons/artua/wall-e/128/eve-icon.png", 40, 40, { alt: "*", flipRtl: "FALSE" }))
+        .appendField("read temperature in")
         .appendField(new Blockly.FieldVariable("celsius"), "celsius")
-        .appendField("from")
-        .appendField(new Blockly.FieldVariable("temperature"), "temperature");
+        .appendField("&")
+        .appendField(new Blockly.FieldVariable("fahrenheit"), "fahrenheit")
+        .appendField("using lm35 standard model")
+        .appendField(new Blockly.FieldCheckbox("TRUE"), "standard");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
-    this.setColour(230);
+    this.setColour(240);
  this.setTooltip("");
  this.setHelpUrl("");
+  },
+  getDeveloperVars: function() {
+    return ['iot_led', 'iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature'];
   }
 };
 
-Blockly.Blocks['iot_fahrenheit'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField(new Blockly.FieldImage("https://avatars.githubusercontent.com/u/9865736?s=280&v=4", 30, 35, { alt: "*", flipRtl: "FALSE" }))
-        .appendField("get")
-        .appendField(new Blockly.FieldVariable("fahrenheit"), "fahrenheit")
-        .appendField("from")
-        .appendField(new Blockly.FieldVariable("temperature"), "temperature");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
-};
+
+
+

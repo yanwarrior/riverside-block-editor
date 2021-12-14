@@ -52,3 +52,13 @@ time.sleep(3)
 `
   return code;
 };
+
+
+Blockly.Python['win_beep'] = function(block) {
+  var number_frequency = block.getFieldValue('frequency');
+  var number_duration = block.getFieldValue('duration');
+  // TODO: Assemble Python into code variable.
+  var code = `import winsound as _sound\n`;
+      code += `_sound.Beep(${number_frequency}, ${number_duration})\n`
+  return code;
+};

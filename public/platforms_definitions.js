@@ -74,3 +74,20 @@ Blockly.Blocks['ifttt_send'] = {
  this.setHelpUrl("https://platform.ifttt.com/docs");
   }
 };
+
+
+Blockly.Blocks['win_beep'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField(new Blockly.FieldImage("https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Windows_logo_-_2012.svg/2048px-Windows_logo_-_2012.svg.png", 40, 40, { alt: "*", flipRtl: "FALSE" }))
+          .appendField("windows beep with frequency")
+          .appendField(new Blockly.FieldNumber(100, 100, 1000), "frequency")
+          .appendField("& duration is")
+          .appendField(new Blockly.FieldNumber(100, 100, 1000), "duration")
+          .appendField("milliseconds");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
