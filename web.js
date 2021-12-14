@@ -14,12 +14,12 @@ const PORT = process.env.PORT || 3001;
 /**
  * SSL Redirect
  */
- app.get('*',function(req,res,next){
-  if(req.headers['x-forwarded-proto']!='https')
-    res.redirect('https://riverlabs.herokuapp.com'+ req.url)
-  else
-    next() /* Continue to other routes if we're not redirecting */
-});
+//  app.get('*',function(req,res,next){
+//   if(req.headers['x-forwarded-proto']!='https')
+//     res.redirect('https://riverlabs.herokuapp.com'+ req.url)
+//   else
+//     next() /* Continue to other routes if we're not redirecting */
+// });
 
 
 app.set(path.join(__dirname, 'views'));

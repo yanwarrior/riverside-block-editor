@@ -346,6 +346,47 @@
       <field name="event">event</field>
     </block>
   </category>
+  <category css-icon="bi bi-window-stack" name="Graphics" colour="230">
+    <block type="gui_app">
+      <field name="gui" id="!`ZMn5U9x]3yvs%(;aY*">gui</field>
+    </block>
+    <block type="gui_rows_layout">
+      <field name="layout" id="Cx:kR0P!v|!Mh29GYA;e">layout</field>
+    </block>
+    <block type="gui_cols"></block>
+    <block type="gui_window">
+      <field name="window" id="6n!fKP2,C93Wu[u9Md/=">window</field>
+      <field name="gui" id=":tBkK@KZVxkL5bdz?G^o">gui</field>
+      <field name="layout" id="%,G)3*Ou0*(GjUtNWB@I">layout</field>
+      <field name="title">My RiverSide App</field>
+    </block>
+    <block type="gui_button">
+      <field name="gui" id=":tBkK@KZVxkL5bdz?G^o">gui</field>
+      <field name="ok">ok</field>
+      <field name="tooltip">...</field>
+      <field name="sizex">0</field>
+      <field name="sizey">0</field>
+      <field name="colors">#ff0000</field>
+      <field name="expandx">FALSE</field>
+      <field name="expandy">FALSE</field>
+    </block>
+    <block type="gui_event_value">
+      <field name="event" id="j4(G53Joxx[IJWSuM?u]">event</field>
+      <field name="values" id=",VA^Z-]OxBc_L3tM-5|P">values</field>
+      <field name="window" id="iiic:WR@+_(7;~x9~+Zt">window</field>
+    </block>
+    <block type="get_values">
+      <field name="values" id=",VA^Z-]OxBc_L3tM-5|P">values</field>
+      <field name="key">key</field>
+    </block>
+    <block type="gui_exit">
+      <field name="gui" id="^`3[^DhJ@VA-S(q$t2Mt">gui</field>
+    </block>
+    <block type="gui_window_close">
+      <field name="window" id="+PJi,Ng)=FF@@9H!-=7H">window</field>
+    </block>
+    <block type="utils_threading"></block>
+  </category>
   <category css-icon="bi bi-cpu" name="Machine Communication" colour="290">
     <block type="open_machine"></block>
     <block type="machine_communication"></block>

@@ -21,17 +21,39 @@ var thingspeakBaseURL = "https://api.thingspeak.com";
 var iftttBaseURL = "https://maker.ifttt.com";
 var roomName = "";
 
+var riverLabs = `
+"""
+######                         
+#     # # #    # ###### #####  
+#     # # #    # #      #    # 
+######  # #    # #####  #    # 
+#   #   # #    # #      #####  
+#    #  #  #  #  #      #   #  
+#     # #   ##   ###### #    # 
+#                              
+#         ##   #####   ####    
+#        #  #  #    # #        
+#       #    # #####   ####    
+#       ###### #    #      #   
+#       #    # #    # #    #   
+####### #    # #####   ####    
+                               
+"""
+`
 var global_statements_import = [
+  riverLabs,
   "try:",
   "  import os",
   "  import time",
   "  import sys",
   "  import smtplib",
   "  import requests",
+  "  import threading",
+  "  import PySimpleGUI as sg",
   "except Exception as e:",
   "  print('system checking...', flush=True)",
   "  print('updgare python system...', flush=True)",
-  "  os.system('pip install requests')",
+  "  os.system('pip install requests pysimplegui')",
   "  print('Don\\'t worry about this problem, you can run again after this message!'.upper(), flush=True)",
   "  sys.exit()",
   "time.sleep(2)",
