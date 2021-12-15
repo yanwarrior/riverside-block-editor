@@ -10,7 +10,7 @@ Blockly.Blocks['iot_machine'] = {
     this.setTooltip("");
     this.setHelpUrl("");
   },
-  getDeveloperVars: function() {
+  getDeveloperVariables: function() {
     return ['iot_led', 'iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature'];
   }
 };
@@ -27,7 +27,7 @@ Blockly.Blocks['iot_led'] = {
     this.setTooltip("");
     this.setHelpUrl("");
   },
-  getDeveloperVars: function() {
+  getDeveloperVariables: function() {
     return ['iot_led', 'iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature'];
   }
 };
@@ -44,7 +44,7 @@ Blockly.Blocks['iot_beep'] = {
     this.setTooltip("");
     this.setHelpUrl("");
   },
-  getDeveloperVars: function() {
+  getDeveloperVariables: function() {
     return ['iot_led', 'iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature'];
   }
 };
@@ -72,7 +72,7 @@ Blockly.Blocks['iot_tone'] = {
     this.setTooltip("");
     this.setHelpUrl("");
   },
-  getDeveloperVars: function() {
+  getDeveloperVariables: function() {
     return ['iot_led', 'iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature'];
   }
 };
@@ -93,7 +93,7 @@ Blockly.Blocks['iot_temperature'] = {
  this.setTooltip("");
  this.setHelpUrl("");
   },
-  getDeveloperVars: function() {
+  getDeveloperVariables: function() {
     return ['iot_led', 'iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature'];
   }
 };

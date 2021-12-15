@@ -431,49 +431,49 @@ inputOpenProject.addEventListener('change', function (evt) {
 // })
 
 
-// linkSerialCom.addEventListener('click', async () => {
-//   if ("serial" in navigator && !serialIsOpen) {
-//     offcanvasConsole.show();
-//     textareaConsole.scrollTop = textareaConsole.scrollHeight;
-//     const port = await navigator.serial.requestPort();
-//     await port.open({ baudRate: 115200 });
-//     serialIsOpen = true;
+linkSerialCom.addEventListener('click', async () => {
+  if ("serial" in navigator && !serialIsOpen) {
+    // offcanvasWebSerial.show();
+    textareaOffcanvasWebSerial.scrollTop = textareaConsole.scrollHeight;
+    const port = await navigator.serial.requestPort();
+    await port.open({ baudRate: 115200 });
+    serialIsOpen = true;
 
-//     while (port.readable) {
+    while (port.readable) {
     
-//       try {
-//         const textDecoder = new TextDecoderStream();
-//         const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
-//         const reader = textDecoder.readable.getReader();
+      try {
+        const textDecoder = new TextDecoderStream();
+        const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
+        const reader = textDecoder.readable.getReader();
 
-//         while (true) {
-//           const { value, done } = await reader.read();
-//           if (done) {
-//             // Allow the serial port to be closed later.
-//             reader.releaseLock();
-//             break;
-//           }
-//           if (value) {
-//             textareaSerial.value += value;
-//           }
-//         }
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) {
+            // Allow the serial port to be closed later.
+            reader.releaseLock();
+            break;
+          }
+          if (value) {
+            textareaOffcanvasWebSerial.value += value;
+          }
+        }
 
-//         const textEncoder = new TextEncoderStream();
-//         const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
+        const textEncoder = new TextEncoderStream();
+        const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
 
-//         reader.cancel();
-//         await readableStreamClosed.catch(() => { 
-//           /* Ignore the error */ 
-//         });
+        reader.cancel();
+        await readableStreamClosed.catch(() => { 
+          /* Ignore the error */ 
+        });
 
-//         await port.close();
-//       } catch (error) {
-//         // TODO: Handle non-fatal read error.
-//       }
-//     }
-//   } else {
-//     // Todo
-//   } 
-// });
+        await port.close();
+      } catch (error) {
+        // TODO: Handle non-fatal read error.
+      }
+    }
+  } else {
+    // Todo
+  } 
+});
 
 

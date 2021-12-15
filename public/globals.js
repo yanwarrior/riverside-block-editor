@@ -19,25 +19,14 @@ var textareaConsole = document.getElementById("textarea_console");
 var linkRoomName = document.getElementById("link_room_name");
 var thingspeakBaseURL = "https://api.thingspeak.com";
 var iftttBaseURL = "https://maker.ifttt.com";
+var linkSerialCom = document.getElementById("link_serial_com");
+// offcanvasWebSerial
+var offcanvasWebSerial = new bootstrap.Offcanvas(document.getElementById("offcanvasWebSerial"));
+var textareaOffcanvasWebSerial = document.getElementById("textareaOffcanvasWebSerial");
 var roomName = "";
 
 var riverLabs = `
-"""
-######                         
-#     # # #    # ###### #####  
-#     # # #    # #      #    # 
-######  # #    # #####  #    # 
-#   #   # #    # #      #####  
-#    #  #  #  #  #      #   #  
-#     # #   ##   ###### #    # 
-#                              
-#         ##   #####   ####    
-#        #  #  #    # #        
-#       #    # #####   ####    
-#       ###### #    #      #   
-#       #    # #    # #    #   
-####### #    # #####   ####    
-                               
+"""                       
 """
 `
 var global_statements_import = [
