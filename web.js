@@ -28,18 +28,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static('public'))
 
 app.use(express.static(__dirname + '/node_modules'))
-
 app.use('/blockly', express.static(path.join(__dirname, 'node_modules/blockly')));
 
 // index page
 app.get('/', function(req, res) {
+  res.render('pages/home');
+});
+
+app.get('/editor', function(req, res) {
   res.render('pages/editor');
 });
 
 app.get('/download', function(req, res){
 
   var file = req.query.file;
-
   var filename = path.basename(file);
   var mimetype = mime.lookup(file);
 
