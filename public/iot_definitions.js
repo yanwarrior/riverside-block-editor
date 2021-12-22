@@ -99,5 +99,76 @@ Blockly.Blocks['iot_temperature'] = {
 };
 
 
+Blockly.Blocks['robot_move'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("https://icons.iconarchive.com/icons/martin-berube/character/128/Robot-icon.png", 40, 40, { alt: "*", flipRtl: "FALSE" }))
+        .appendField("robot move")
+        .appendField(new Blockly.FieldDropdown([["30","1.05"], ["60","1.05*2"], ["90","1.05*3"]]), "state")
+        .appendField("cm with direction")
+        .appendField(new Blockly.FieldDropdown([["forward","go"], ["backward","back"]]), "direction");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  },
+  getDeveloperVariables: function() {
+    return ['iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature', 'iot_robot_move',];
+  }
+};
+
+Blockly.Blocks['robot_rotate'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("https://icons.iconarchive.com/icons/martin-berube/character/128/Robot-icon.png", 40, 40, { alt: "*", flipRtl: "FALSE" }))
+        .appendField("robot rotate")
+        .appendField(new Blockly.FieldDropdown([["90 degree","90"], ["180 degree","180"],["-90 degree","-90"], ["-180 degree","-180"]]), "state");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  },
+  getDeveloperVariables: function() {
+    return ['iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature', 'iot_robot_rotate',];
+  }
+};
 
 
+Blockly.Blocks['robot_rotate'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldImage("https://icons.iconarchive.com/icons/martin-berube/character/128/Robot-icon.png", 40, 40, { alt: "*", flipRtl: "FALSE" }))
+        .appendField("robot rotate")
+        .appendField(new Blockly.FieldDropdown([["right","right"], ["left","left"]]), "direction")
+        .appendField(new Blockly.FieldDropdown([["90 degree","0.86/2"], ["180 degree","0.86"]]), "state");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  },
+
+  getDeveloperVariables: function() {
+    return ['iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature', 'iot_robot_rotate',];
+  }
+};
+
+
+// Blockly.Blocks['robot_lamp'] = {
+//   init: function() {
+//     this.appendDummyInput()
+//         .appendField(new Blockly.FieldImage("https://icons.iconarchive.com/icons/martin-berube/character/128/Robot-icon.png", 40, 40, { alt: "*", flipRtl: "FALSE" }))
+//         .appendField("robot led")
+//         .appendField(new Blockly.FieldDropdown([["red","red"], ["green","green"], ["blue","blue"], ["yellow","yellow"], ["off","off"]]), "color");
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//     this.setColour(160);
+//  this.setTooltip("");
+//  this.setHelpUrl("");
+//   },
+//   getDeveloperVariables: function() {
+//     return ['iot_machine', 'iot_beep', 'iot_tone', 'iot_temperature', 'iot_robot_lamp',];
+//   }
+// };

@@ -75,3 +75,54 @@ Blockly.Python['iot_temperature'] = function(block) {
 };
 
 
+Blockly.Python['robot_move'] = function(block) {
+  var iot_robot_move = Blockly.Python.variableDB_.getName('iot_robot_move',
+    Blockly.Names.DEVELOPER_VARIABLE_TYPE);
+  var variable_iot_machine = Blockly.Python.variableDB_.getName('iot_machine',
+    Blockly.Names.DEVELOPER_VARIABLE_TYPE);
+
+  var dropdown_state = block.getFieldValue('state');
+  var dropdown_direction = block.getFieldValue('direction');
+  // TODO: Assemble Python into code variable.
+  var code = `${iot_robot_move} = requests.get(f'http://{${variable_iot_machine}}/robot/${dropdown_direction}')\n`;
+      code += `print(${iot_robot_move}.text, flush=True)\n`; 
+      code += `time.sleep(${dropdown_state})\n\n`;
+      code += `${iot_robot_move} = requests.get(f'http://{${variable_iot_machine}}/robot/stop')\n`;
+      code += `print(${iot_robot_move}.text, flush=True)\n`; 
+      code += `time.sleep(1.5)\n\n`;
+  return code;
+};
+
+
+Blockly.Python['robot_rotate'] = function(block) {
+  var iot_robot_rotate = Blockly.Python.variableDB_.getName('iot_robot_rotate',
+    Blockly.Names.DEVELOPER_VARIABLE_TYPE);
+  var variable_iot_machine = Blockly.Python.variableDB_.getName('iot_machine',
+    Blockly.Names.DEVELOPER_VARIABLE_TYPE);
+  var dropdown_state = block.getFieldValue('state');
+  var dropdown_direction = block.getFieldValue('direction');
+
+  // TODO: Assemble Python into code variable.
+  var code = `${iot_robot_rotate} = requests.get(f'http://{${variable_iot_machine}}/robot/${dropdown_direction}')\n`;
+      code += `print(${iot_robot_rotate}.text, flush=True)\n`; 
+      code += `time.sleep(${dropdown_state})\n\n`;
+      code += `${iot_robot_rotate} = requests.get(f'http://{${variable_iot_machine}}/robot/stop')\n`;
+      code += `print(${iot_robot_rotate}.text, flush=True)\n`; 
+      code += `time.sleep(1.5)\n\n`;
+  return code;
+};
+
+
+// Blockly.Python['robot_lamp'] = function(block) {
+//   var iot_robot_lamp = Blockly.Python.variableDB_.getName('iot_robot_lamp',
+//     Blockly.Names.DEVELOPER_VARIABLE_TYPE);
+//   var variable_iot_machine = Blockly.Python.variableDB_.getName('iot_machine',
+//     Blockly.Names.DEVELOPER_VARIABLE_TYPE);
+//   var dropdown_color = block.getFieldValue('color');
+//   TODO: Assemble Python into code variable.
+//   var code = `${iot_robot_lamp} = requests.get(f'http://{${variable_iot_machine}}/robot/led/${dropdown_color}')\n`;
+//       code += `print(${iot_robot_lamp}.text, flush=True)\n`; 
+//       code += `time.sleep(1)\n`;
+//   return code;
+// };
+
