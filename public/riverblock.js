@@ -280,8 +280,9 @@ blocklyWorkspace.addChangeListener(function (event) {
 
   code += Blockly.Python.workspaceToCode(blocklyWorkspace);
   code += "\n" + global_statements_end.join("\n");
-  textareaPython.value = "";
-  textareaPython.value = code;
+  // textareaPython.value = "";
+  // textareaPython.value = code;
+  console.log(code)
 });
 
 window.onload = function () {
